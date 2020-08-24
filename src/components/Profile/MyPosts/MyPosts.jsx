@@ -11,8 +11,8 @@ const MyPosts = () => {
                 </div>
                 <textarea/>
                 <button>add post</button>
-                <Post />
-                <Post />
+                <Post message={"Hello, it's my first post lol"}/>
+                <Post message={"hu a you man?"}/>
             </div>
         </div>
     )
