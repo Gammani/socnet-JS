@@ -3,6 +3,7 @@
     background-color: cornflowerblue;
 }
 
-.item {
+.item a {
+    text-decoration: none;
     color: white;
 }
