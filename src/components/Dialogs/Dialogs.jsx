@@ -2,30 +2,38 @@ import React from 'react';
 import s from './Dialogs.module.css'
 import {NavLink} from "react-router-dom";
 
+const DialogItem = (props) => {
+    let path = "/dialogs/" + props.id;
+
+    return (
+        <div className={s.dialog}>
+            <NavLink to={path} activeClassName={s.active}>{props.name}</NavLink>
+        </div>
+    )
+}
+
+const Message = (props) => {
+    return (
+        <div className={s.message}>
+            {props.message}
+        </div>
+    )
+}
+
 const Dialogs = (props) => {
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
-                <div className={s.dialog}>
-                    <NavLink to="/dialogs/1" activeClassName={s.active}>Kleo</NavLink>
-                </div>
-                <div className={s.dialog}>
-                    <NavLink to="/dialogs/2" activeClassName={s.active}>Hiperion</NavLink>
-                </div>
-                <div className={s.dialog}>
-                    <NavLink to="/dialogs/3" activeClassName={s.active}>Suzi</NavLink>
-                </div>
-                <div className={s.dialog}>
-                    <NavLink to="/dialogs/4" activeClassName={s.active}>Gektar</NavLink>
-                </div>
-                <div className={s.dialog}>
-                    <NavLink to="/dialogs/5" activeClassName={s.active}>Chuck</NavLink>
-                </div>
+                <DialogItem name={"Kleo"} id={"1"}/>
+                <DialogItem name={"Hiperion"} id={"2"}/>
+                <DialogItem name={"Suzi"} id={"3"}/>
+                <DialogItem name={"Gektar"} id={"4"}/>
+                <DialogItem name={"Chuck"} id={"5"}/>
             </div>
             <div className={s.messages}>
-                <div className={s.message}>Hi there</div>
-                <div className={s.message}>Yo</div>
-                <div className={s.message}>Helo man!</div>
+                <Message message={"Hi there"}/>
+                <Message message={"Yo"}/>
+                <Message message={"Helo man!"}/>
             </div>
         </div>
     )
