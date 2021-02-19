@@ -9,9 +9,6 @@ const DialogsContainer = (props) => {
 
     let state = props.store.getState().dialogsPage;
 
-    let dialogsElements = state.dialogs.map(d => <DialogItem name={d.name} id={d.id}/>)
-    let messagesElements = state.messages.map(m => <Message message={m.message} id={m.id}/>)
-    let newMessageBody = state.newMassageBody;
 
     let onSendMessageClick = () => {
         props.store.dispatch(sendMessageAC());
@@ -23,11 +20,9 @@ const DialogsContainer = (props) => {
 
     return (
         <Dialogs
+            dialogsPage={state}
             sendMessage={onSendMessageClick}
             sendMessageChange={onSendMessageChange}
-            dialogsElements={dialogsElements}
-            messagesElements={messagesElements}
-            newMessageBody={newMessageBody}
         />
     )
 }
