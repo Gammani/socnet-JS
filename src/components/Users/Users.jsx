@@ -1,60 +1,29 @@
 import React from "react";
 import styles from './users.module.css'
+import axios from "axios";
+import userPhoto from '../../assets/images/user.png';
+
 
 let Users = (props) => {
 
-    if (props.users.length === 0) {
-        props.setUsers([
-            {
-                id: 1,
-                photoUrl: 'https://avatarko.ru/img/kartinka/1/multfilm_gomer.png',
-                followed: true,
-                fullName: "Leha",
-                status: "Yo",
-                location: {city: "Devyatkino", country: "Russia"}
-            },
-            {
-                id: 2,
-                photoUrl: 'https://avatarko.ru/img/kartinka/1/multfilm_gomer.png',
-                followed: true,
-                fullName: "Suzi",
-                status: "I'm fine",
-                location: {city: "New York", country: "USA"}
-            },
-            {
-                id: 3,
-                photoUrl: 'https://avatarko.ru/img/kartinka/1/multfilm_gomer.png',
-                followed: true,
-                fullName: "Fai",
-                status: "Hi hi",
-                location: {city: "Pattaya", country: "Thailand"}
-            },
-            {
-                id: 4,
-                photoUrl: 'https://avatarko.ru/img/kartinka/1/multfilm_gomer.png',
-                followed: true,
-                fullName: "Daenerys",
-                status: "Where is my Dragons?",
-                location: {city: "Royal Harbor", country: "Seven Kingdoms"}
-            },
-            {
-                id: 5,
-                photoUrl: 'https://avatarko.ru/img/kartinka/1/multfilm_gomer.png',
-                followed: false,
-                fullName: "name",
-                status: "online",
-                location: {city: "city", country: "country"}
-            }
-        ])
+    let getUsers = () => {
+
+        if (props.users.length === 0) {
+            axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
+                props.setUsers(response.data.items);
+            })
+        }
     }
 
     return (
         <div>
+            <button onClick={getUsers}>Get Users</button>
             {
                 props.users.map(u => <div key={u.id}>
                     <span>
                         <div>
-                            <img src={u.photoUrl} className={styles.userPhoto} alt={"аватар"}/>
+                            <img src={u.photos.small != null ? u.photos.small : userPhoto} className={styles.userPhoto}
+                                 alt={"аватар"}/>
                         </div>
                         <div>
                            {u.followed ?
@@ -68,11 +37,11 @@ let Users = (props) => {
                     </span>
                     <span>
                         <span>
-                            <div>{u.fullName}</div><div>{u.status}</div>
+                            <div>{u.name}</div><div>{u.status}</div>
                         </span>
                         <span>
-                            <div>{u.location.country}</div>
-                            <div>{u.location.city}</div>
+                            <div>{"u.location.country"}</div>
+                            <div>{"u.location.city"}</div>
                         </span>
                     </span>
                 </div>)
