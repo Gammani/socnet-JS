@@ -1,7 +1,8 @@
 import React from 'react';
 import s from './ProfileInfo.module.css';
 import Preloader from "../../../common/Preloader/Preloader";
-import userPhoto from '../../../assets/images/user.png'
+import userPhoto from '../../../assets/images/user.png';
+import ProfileStatus from './ProfileStatus';
 
 const ProfileInfo = (props) => {
     if (!props.profile) {
@@ -9,12 +10,13 @@ const ProfileInfo = (props) => {
     }
     return (
         <div className={s.wrapper}>
-            <div className={s.hat}>
-                <img src="https://interier-foto.ru/wp-content/uploads/dlinnye-foto-4.jpg" alt={"заставка"}/>
-            </div>
+            {/*<div className={s.hat}>*/}
+            {/*    <img src="https://interier-foto.ru/wp-content/uploads/dlinnye-foto-4.jpg" alt={"заставка"}/>*/}
+            {/*</div>*/}
             <div className={s.descriptionBlock}>
                 <div>
                     <img src={props.profile.photos.large ? props.profile.photos.large : userPhoto} alt={"аватар пользователя"}/>
+                    <ProfileStatus status={"Hello World!"}/>
                 </div>
                 <div>
                     Обо мне: {props.profile.aboutMe ? props.profile.aboutMe : "-"}
