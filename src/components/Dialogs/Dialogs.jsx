@@ -14,7 +14,6 @@ const Dialogs = (props) => {
 
     let addNewMessage = (values) => {
         props.sendMessage(values.newMassageBody);
-        console.log("add")
     }
 
     return (
